@@ -2,7 +2,7 @@
 // Name        : SPH.cpp
 // Author      : Ninoy
 // Version     :
-// Copyright   : 
+// Copyright   :
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
@@ -83,46 +83,46 @@ int main() {
 //	writevtkpointdata("treealgorithm.vtk", particles, N);
 //	tree.~Tree();
 
-//	//Linked cell algorithm
-//	float m = 1.0;
-//	int N = 6000;
-//	Vector positionvector(3);
-//	SmoothParticle **particles = new SmoothParticle*[N];
-//	for(int i = 0; i < N; i++){
-//		float positionarray[] = {rand()%200000, rand()%200000, rand()%200000};
-//		positionvector.setvalue(positionarray);
-//		positionvector = positionvector*(0.00005);
-//		particles[i] = new SmoothParticle(i, m);
-//		particles[i]->setposition(positionvector);
-//	}
-//
-//	float domainstartarray[] = {0.0, 0.0, 0.0};
-//	float domainendarray[] = {2.0, 2.0, 2.0};
-//	int cellperlength = 10;
-//	Vector domainstart(3);
-//	Vector domainend(3);
-//	domainstart.setvalue(domainstartarray);
-//	domainend.setvalue(domainendarray);
-//	LCA *lca = new LCA(cellperlength, domainstart, domainend);
-//
-//	clock_t begin = clock();
-//
-//	lca->insertparticle(N, particles);
-//	lca->calculatedensity(1.0);
-//	lca->calculateforce(1.0);
-//
-//	clock_t end = clock();
-//	double elapsed_secs = (double) (end - begin) / CLOCKS_PER_SEC;
-//	std::cout << "elapsed_secs = " << elapsed_secs << std::endl;
-//	std::cout << "avg num of particle per cell = " << lca->getavgparticlepercell() << std::endl;
-//	std::cout << "max num of particle per cell = " << lca->getmaxparticlepercell() << std::endl;
-//
-//	VelocityStoermerVerlet vsv;
-//	vsv.updatevelocity(N, particles, 5e-6);
-//	vsv.updateposition(N, particles, 1e-5);
-//	vsv.updatevelocity(N, particles, 5e-6);
-//	writevtkpointdata("linkedcellalgorithm.vtk", particles, N);
-//	delete lca;
+	//Linked cell algorithm
+	float m = 1.0;
+	int N = 6000;
+	Vector positionvector(3);
+	SmoothParticle **particles = new SmoothParticle*[N];
+	for(int i = 0; i < N; i++){
+		float positionarray[] = {rand()%200000, rand()%200000, rand()%200000};
+		positionvector.setvalue(positionarray);
+		positionvector = positionvector*(0.00005);
+		particles[i] = new SmoothParticle(i, m);
+		particles[i]->setposition(positionvector);
+	}
+
+	float domainstartarray[] = {0.0, 0.0, 0.0};
+	float domainendarray[] = {2.0, 2.0, 2.0};
+	int cellperlength = 10;
+	Vector domainstart(3);
+	Vector domainend(3);
+	domainstart.setvalue(domainstartarray);
+	domainend.setvalue(domainendarray);
+	LCA *lca = new LCA(cellperlength, domainstart, domainend);
+
+	clock_t begin = clock();
+
+	lca->insertparticle(N, particles);
+	lca->calculatedensity(1.0);
+	lca->calculateforce(1.0);
+
+	clock_t end = clock();
+	double elapsed_secs = (double) (end - begin) / CLOCKS_PER_SEC;
+	std::cout << "elapsed_secs = " << elapsed_secs << std::endl;
+	std::cout << "avg num of particle per cell = " << lca->getavgparticlepercell() << std::endl;
+	std::cout << "max num of particle per cell = " << lca->getmaxparticlepercell() << std::endl;
+
+	VelocityStoermerVerlet vsv;
+	vsv.updatevelocity(N, particles, 5e-6);
+	vsv.updateposition(N, particles, 1e-5);
+	vsv.updatevelocity(N, particles, 5e-6);
+	writevtkpointdata("linkedcellalgorithm.vtk", particles, N);
+	delete lca;
 
 	return 0;
 }
